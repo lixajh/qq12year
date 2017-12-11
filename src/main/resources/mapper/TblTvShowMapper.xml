@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmjd.qq12year.dao.TblTvShowMapper">
+  <resultMap id="BaseResultMap" type="com.xmjd.qq12year.model.TblTvShow">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="pk_global_id" jdbcType="VARCHAR" property="pkGlobalId" />
+    <result column="m_date" jdbcType="DATE" property="mDate" />
+    <result column="audio" jdbcType="VARCHAR" property="audio" />
+  </resultMap>
+
+  <select id="getList" resultType="java.lang.String">
+    select DATE_FORMAT(m_date,'%Y-%m-%d') date from tbl_tv_show
+  </select>
+  <select id="getRecord" resultType="java.util.HashMap">
+    select DATE_FORMAT(m_date,'%Y-%m-%d') m_date,audio,pk_global_id from tbl_tv_show where m_date = #{date,jdbcType=VARCHAR}
+  </select>
+
+
+</mapper>
