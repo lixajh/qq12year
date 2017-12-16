@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.xmjd.qq12year.dao.TblNewsMapper">
+  <resultMap id="BaseResultMap" type="com.xmjd.qq12year.model.TblNews">
+    <!--
+      WARNING - @mbg.generated
+    -->
+    <id column="pk_global_id" jdbcType="VARCHAR" property="pkGlobalId" />
+    <result column="m_date" jdbcType="DATE" property="mDate" />
+    <result column="news1" jdbcType="VARCHAR" property="news1" />
+    <result column="news2" jdbcType="VARCHAR" property="news2" />
+    <result column="news3" jdbcType="VARCHAR" property="news3" />
+    <result column="news4" jdbcType="VARCHAR" property="news4" />
+    <result column="news_md1" jdbcType="VARCHAR" property="newsMd1" />
+    <result column="news_md2" jdbcType="VARCHAR" property="newsMd2" />
+    <result column="news_md3" jdbcType="VARCHAR" property="newsMd3" />
+    <result column="news_md4" jdbcType="VARCHAR" property="newsMd4" />
+  </resultMap>
+</mapper>
