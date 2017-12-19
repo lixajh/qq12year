@@ -2,23 +2,32 @@ package com.xmjd.qq12year.web;
 import com.xmjd.qq12year.core.Result;
 import com.xmjd.qq12year.core.ResultGenerator;
 import com.xmjd.qq12year.model.TblNews;
+import com.xmjd.qq12year.model.TblTvShow;
 import com.xmjd.qq12year.service.TblNewsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
-* Created by CodeGenerator on 2017/12/17.
+* Created by CodeGenerator on 2017/12/19.
 */
 @RestController
-@RequestMapping("/tbl/news")
+@RequestMapping("/news")
 public class TblNewsController {
+
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:允许输入空值，false:不能为空值
+    }
     @Resource
     private TblNewsService tblNewsService;
 
@@ -29,7 +38,7 @@ public class TblNewsController {
     }
 
     @PostMapping("/delete")
-    public Result delete(@RequestParam Integer id) {
+    public Result delete(@RequestParam String id) {
         tblNewsService.deleteById(id);
         return ResultGenerator.genSuccessResult();
     }
@@ -40,10 +49,10 @@ public class TblNewsController {
         return ResultGenerator.genSuccessResult();
     }
 
-    @PostMapping("/detail")
-    public Result detail(@RequestParam Integer id) {
-        TblNews tblNews = tblNewsService.findById(id);
-        return ResultGenerator.genSuccessResult(tblNews);
+    @RequestMapping("/detail")
+    public Result detail(Date date) {
+        TblNews tvShow = tblNewsService.findByDate( date);
+        return ResultGenerator.genSuccessResult(tvShow);
     }
 
     @PostMapping("/list")
@@ -53,4 +62,19 @@ public class TblNewsController {
         PageInfo pageInfo = new PageInfo(list);
         return ResultGenerator.genSuccessResult(pageInfo);
     }
+
+    @PostMapping("/edit")
+    public Result edit(TblNews tblTvShow) {
+        TblNews tvShow = tblNewsService.findByDate(tblTvShow.getmDate());
+        if(tvShow != null){
+            tblTvShow.setPkGlobalId(tvShow.getPkGlobalId());
+            tblNewsService.update(tblTvShow);
+        }else{
+            tblNewsService.save(tblTvShow);
+        }
+
+        return ResultGenerator.genSuccessResult();
+    }
+
+
 }

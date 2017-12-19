@@ -8,10 +8,11 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 
 
 /**
- * Created by CodeGenerator on 2017/12/17.
+ * Created by CodeGenerator on 2017/12/19.
  */
 @Service
 @Transactional
@@ -19,4 +20,7 @@ public class TblNewsServiceImpl extends AbstractService<TblNews> implements TblN
     @Resource
     private TblNewsMapper tblNewsMapper;
 
+    public TblNews findByDate(Date date){
+       return tblNewsMapper.findByDate(date);
+    }
 }

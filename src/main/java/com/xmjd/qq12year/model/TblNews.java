@@ -5,6 +5,7 @@ import javax.persistence.*;
 
 @Table(name = "tbl_news")
 public class TblNews {
+    public static final String mDateFeild="m_date";
     @Id
     @Column(name = "pk_global_id")
     private String pkGlobalId;

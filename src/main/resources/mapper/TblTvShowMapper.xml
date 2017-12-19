@@ -8,6 +8,7 @@
     <id column="pk_global_id" jdbcType="VARCHAR" property="pkGlobalId" />
     <result column="m_date" jdbcType="DATE" property="mDate" />
     <result column="audio" jdbcType="VARCHAR" property="audio" />
+    <result column="have_show" jdbcType="INTEGER" property="haveShow" />
   </resultMap>
 
   <select id="getList" resultType="java.lang.String">

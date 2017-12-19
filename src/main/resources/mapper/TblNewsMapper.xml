@@ -16,4 +16,9 @@
     <result column="news_md3" jdbcType="VARCHAR" property="newsMd3" />
     <result column="news_md4" jdbcType="VARCHAR" property="newsMd4" />
   </resultMap>
+
+  <select id="findByDate" resultType="java.util.HashMap">
+    select DATE_FORMAT(m_date,'%Y-%m-%d') m_date,pk_global_id,news1,news2,news3,news4,news_md1,news_md2,news_md3,news_md4 from tbl_news where m_date = #{date}
+  </select>
+
 </mapper>
