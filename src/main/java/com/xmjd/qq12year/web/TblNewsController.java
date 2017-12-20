@@ -6,6 +6,7 @@ import com.xmjd.qq12year.model.TblTvShow;
 import com.xmjd.qq12year.service.TblNewsService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import com.xmjd.qq12year.utils.PkUtils;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
@@ -64,13 +65,14 @@ public class TblNewsController {
     }
 
     @PostMapping("/edit")
-    public Result edit(TblNews tblTvShow) {
-        TblNews tvShow = tblNewsService.findByDate(tblTvShow.getmDate());
+    public Result edit(TblNews tblNews) {
+        TblNews tvShow = tblNewsService.findByDate(tblNews.getmDate());
         if(tvShow != null){
-            tblTvShow.setPkGlobalId(tvShow.getPkGlobalId());
-            tblNewsService.update(tblTvShow);
+            tblNews.setPkGlobalId(tvShow.getPkGlobalId());
+            tblNewsService.update(tblNews);
         }else{
-            tblNewsService.save(tblTvShow);
+            tblNews.setPkGlobalId(PkUtils.getPk());
+            tblNewsService.save(tblNews);
         }
 
         return ResultGenerator.genSuccessResult();
