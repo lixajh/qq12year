@@ -5,23 +5,42 @@ import com.xmjd.qq12year.model.TblTvShow;
 import com.xmjd.qq12year.service.TblTvShowService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
 * Created by CodeGenerator on 2017/12/19.
 */
 @RestController
-@RequestMapping("/tbl/tv/show")
+@RequestMapping("/demo")
 public class TblTvShowController {
     @Resource
     private TblTvShowService tblTvShowService;
 
+    @RequestMapping("getList")
+     @ResponseBody
+     public Map<String,List<String>> getList(HttpServletRequest request){
+                List<String> list = tblTvShowService.getList();
+                Map<String,List<String>> returnMap = new HashMap<>();
+                returnMap.put("date", list);
+                return returnMap;
+        //		return "{\"date\":[\"2017-12-09\",\"2017-12-08\"]}";
+                    }
+ 
+         
+             @RequestMapping("getDateRecord")
+     @ResponseBody
+     public Map<String,Object> getDateRecord(HttpServletRequest request,String date){
+                Map<String,Object> returnMap = tblTvShowService.getRecord(date);
+        
+                        return returnMap;
+        //		return "{\"date\":[\"2017-12-09\",\"2017-12-08\"]}";
+                    }
     @PostMapping("/add")
     public Result add(TblTvShow tblTvShow) {
         tblTvShowService.save(tblTvShow);

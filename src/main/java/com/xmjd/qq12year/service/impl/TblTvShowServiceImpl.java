@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 
 /**
@@ -18,5 +20,16 @@ import javax.annotation.Resource;
 public class TblTvShowServiceImpl extends AbstractService<TblTvShow> implements TblTvShowService {
     @Resource
     private TblTvShowMapper tblTvShowMapper;
-
+    @Override
+     public List<String> getList() {
+                // TODO Auto-generated method stub
+                
+                                return tblTvShowMapper.getList();
+            }
+ 
+             @Override
+     public Map<String, Object> getRecord(String date) {
+                // TODO Auto-generated method stub
+                        return tblTvShowMapper.getRecord(date);
+            }
 }
