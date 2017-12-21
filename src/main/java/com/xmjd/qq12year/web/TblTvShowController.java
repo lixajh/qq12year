@@ -22,15 +22,23 @@ public class TblTvShowController {
     @Resource
     private TblTvShowService tblTvShowService;
 
-    @RequestMapping("getList")
+    @RequestMapping("getToday")
+    @ResponseBody
+    public Result getToday(HttpServletRequest request){
+        TblTvShow record = tblTvShowService.getToday();
+
+
+        return  ResultGenerator.genSuccessResult(record);
+    }
+
+     @RequestMapping("getList")
      @ResponseBody
      public Map<String,List<String>> getList(HttpServletRequest request){
-                List<String> list = tblTvShowService.getList();
-                Map<String,List<String>> returnMap = new HashMap<>();
-                returnMap.put("date", list);
-                return returnMap;
-        //		return "{\"date\":[\"2017-12-09\",\"2017-12-08\"]}";
-                    }
+        List<String> list = tblTvShowService.getList();
+        Map<String,List<String>> returnMap = new HashMap<>();
+        returnMap.put("date", list);
+        return returnMap;
+      }
  
          
              @RequestMapping("getDateRecord")

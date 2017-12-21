@@ -10,6 +10,7 @@ import java.util.Map;
  * Created by CodeGenerator on 2017/12/19.
  */
 public interface TblTvShowService extends Service<TblTvShow> {
+    TblTvShow getToday();
     List<String> getList() ;
     Map<String,Object> getRecord(String date);
 }

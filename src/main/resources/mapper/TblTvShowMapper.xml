@@ -17,6 +17,8 @@
   <select id="getRecord" resultType="java.util.HashMap">
     select DATE_FORMAT(m_date,'%Y-%m-%d') m_date,audio,pk_global_id from tbl_tv_show where m_date = #{date,jdbcType=VARCHAR}
   </select>
-
+  <select id="getToday" resultType="com.xmjd.qq12year.model.TblTvShow">
+    select  DATE_FORMAT(m_date,'%Y-%m-%d') mDate,audio,pk_global_id from tbl_tv_show where have_show=1 order by m_date desc LIMIT 1
+  </select>
 
 </mapper>

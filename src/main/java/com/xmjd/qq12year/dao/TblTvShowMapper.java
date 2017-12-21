@@ -9,4 +9,5 @@ import java.util.Map;
 public interface TblTvShowMapper extends Mapper<TblTvShow> {
     List<String> getList();
     Map<String, Object> getRecord(String date);
+    TblTvShow getToday();
 }

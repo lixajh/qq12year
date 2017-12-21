@@ -20,6 +20,12 @@ import java.util.Map;
 public class TblTvShowServiceImpl extends AbstractService<TblTvShow> implements TblTvShowService {
     @Resource
     private TblTvShowMapper tblTvShowMapper;
+
+    @Override
+    public TblTvShow getToday() {
+        return tblTvShowMapper.getToday();
+    }
+
     @Override
      public List<String> getList() {
                 // TODO Auto-generated method stub
@@ -27,7 +33,7 @@ public class TblTvShowServiceImpl extends AbstractService<TblTvShow> implements 
                                 return tblTvShowMapper.getList();
             }
  
-             @Override
+     @Override
      public Map<String, Object> getRecord(String date) {
                 // TODO Auto-generated method stub
                         return tblTvShowMapper.getRecord(date);

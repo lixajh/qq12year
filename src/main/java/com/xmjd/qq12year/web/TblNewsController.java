@@ -51,7 +51,7 @@ public class TblNewsController {
     }
 
     @RequestMapping("/detail")
-    public Result detail(Date date) {
+    public Result detail(@RequestParam Date date) {
         TblNews tvShow = tblNewsService.findByDate( date);
         return ResultGenerator.genSuccessResult(tvShow);
     }
