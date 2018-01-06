@@ -9,6 +9,10 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,10 +35,15 @@ public class TblTvShowController {
         return  ResultGenerator.genSuccessResult(record);
     }
 
-     @RequestMapping("getList")
+     @RequestMapping("getNewMonth")
      @ResponseBody
-     public Map<String,List<String>> getList(HttpServletRequest request){
-        List<String> list = tblTvShowService.getList();
+     public Map<String,List<String>> getList(HttpServletRequest request,String date, Integer addMonth) throws ParseException {
+        if(addMonth == null){
+            addMonth = 0;
+        }
+         DateFormat format1 = new SimpleDateFormat("yyyy-MM-dd");
+         Date date1 = format1.parse(date);
+         List<String> list = tblTvShowService.getList(date1, addMonth);
         Map<String,List<String>> returnMap = new HashMap<>();
         returnMap.put("date", list);
         return returnMap;

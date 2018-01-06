@@ -12,7 +12,8 @@
   </resultMap>
 
   <select id="getList" resultType="java.lang.String">
-    select DATE_FORMAT(m_date,'%Y-%m-%d') date from tbl_tv_show
+SELECT DATE_FORMAT(m_date,'%Y-%m-%d') date FROM tbl_tv_show WHERE PERIOD_DIFF( date_format( #{date} , '%Y%m' ) , date_format( m_date, '%Y%m' ) ) = -#{addMonth}
+   /* select DATE_FORMAT(m_date,'%Y-%m-%d') date from tbl_tv_show*/
   </select>
   <select id="getRecord" resultType="java.util.HashMap">
     select DATE_FORMAT(m_date,'%Y-%m-%d') m_date,audio,pk_global_id from tbl_tv_show where m_date = #{date,jdbcType=VARCHAR}

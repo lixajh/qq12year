@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.annotation.Resource;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -27,10 +28,10 @@ public class TblTvShowServiceImpl extends AbstractService<TblTvShow> implements 
     }
 
     @Override
-     public List<String> getList() {
+     public List<String> getList(Date date, int addMonth) {
                 // TODO Auto-generated method stub
                 
-                                return tblTvShowMapper.getList();
+                                return tblTvShowMapper.getList(date, addMonth);
             }
  
      @Override

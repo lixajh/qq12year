@@ -18,7 +18,7 @@
   </resultMap>
 
   <select id="findByDate" resultType="com.xmjd.qq12year.model.TblNews">
-    select pk_global_id pkGlobalId, m_date mDate,news1,news2,news3,news4,news_md1 newsMd1,news_md2 newsMd2,news_md3 newsMd3,news_md4 newsMd4 from tbl_news where m_date = #{date}
+    select pk_global_id pkGlobalId, m_date mDate,news1,news2,news3,news4,news_md1 newsMd1,news_md2 newsMd2,news_md3 newsMd3,news_md4 newsMd4 from tbl_news where m_date &lt;=	 #{date} order by m_date desc limit 1
   </select>
 
 </mapper>
