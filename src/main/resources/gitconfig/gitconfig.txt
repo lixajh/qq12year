@@ -1,0 +1,2 @@
+忽略配置文件变化的git命令：
+git update-index --assume-unchanged src/main/resources/*.properties
