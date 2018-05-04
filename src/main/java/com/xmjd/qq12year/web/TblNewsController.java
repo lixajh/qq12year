@@ -1,4 +1,5 @@
 package com.xmjd.qq12year.web;
+
 import com.xmjd.qq12year.core.Result;
 import com.xmjd.qq12year.core.ResultGenerator;
 import com.xmjd.qq12year.model.TblNews;
@@ -17,8 +18,8 @@ import java.util.Date;
 import java.util.List;
 
 /**
-* Created by CodeGenerator on 2017/12/19.
-*/
+ * Created by CodeGenerator on 2017/12/19.
+ */
 @RestController
 @RequestMapping("/news")
 public class TblNewsController {
@@ -29,6 +30,7 @@ public class TblNewsController {
         dateFormat.setLenient(false);
         binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));   //true:允许输入空值，false:不能为空值
     }
+
     @Resource
     private TblNewsService tblNewsService;
 
@@ -52,7 +54,7 @@ public class TblNewsController {
 
     @RequestMapping("/detail")
     public Result detail(@RequestParam Date date) {
-        TblNews tvShow = tblNewsService.findByDate( date);
+        TblNews tvShow = tblNewsService.findByDate(date);
         return ResultGenerator.genSuccessResult(tvShow);
     }
 
@@ -67,16 +69,14 @@ public class TblNewsController {
     @PostMapping("/edit")
     public Result edit(TblNews tblNews) {
         TblNews tvShow = tblNewsService.findByDate(tblNews.getmDate());
-        if(tvShow != null){
+        if (tvShow != null) {
             tblNews.setPkGlobalId(tvShow.getPkGlobalId());
             tblNewsService.update(tblNews);
-        }else{
+        } else {
             tblNews.setPkGlobalId(PkUtils.getPk());
             tblNewsService.save(tblNews);
         }
 
         return ResultGenerator.genSuccessResult();
     }
-
-
 }

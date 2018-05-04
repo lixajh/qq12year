@@ -14,4 +14,5 @@ public interface TblTvShowService extends Service<TblTvShow> {
     TblTvShow getToday();
     List<String> getList(Date date, int addMonth) ;
     Map<String,Object> getRecord(String date);
+    void enableRecordBeforeToday();//使今天之前的所有记录都可用
 }

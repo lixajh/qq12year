@@ -22,4 +22,13 @@ SELECT DATE_FORMAT(m_date,'%Y-%m-%d') date FROM tbl_tv_show WHERE PERIOD_DIFF( d
     select  DATE_FORMAT(m_date,'%Y-%m-%d') mDate,audio,pk_global_id from tbl_tv_show where have_show=1 order by m_date desc LIMIT 1
   </select>
 
+  <update id="enableRecordBeforeToday">
+    update
+    tbl_tv_show
+    set
+    have_show = 1
+    where
+    m_date &lt;= #{date}
+  </update>
+
 </mapper>
